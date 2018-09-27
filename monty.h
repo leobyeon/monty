@@ -1,13 +1,13 @@
 #ifndef MONTY_H
 #define MONTY_H
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
 #include <unistd.h>
 
-#define _GNU_SOURCE
 
 #define DELIMS " \t\r\n"
 
