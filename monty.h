@@ -7,8 +7,6 @@
 #include <ctype.h>
 #include <unistd.h>
 
-#define _GNU_SOURCE
-
 #define DELIMS " \t\r\n"
 
 
