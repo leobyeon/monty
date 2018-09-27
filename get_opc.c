@@ -26,6 +26,11 @@ void get_opc(char *tok1, unsigned int ln, stack_t **stack)
 		add(stack, ln);
 	else if (strcmp(tok1, "nop") == 0)
 		nop(stack, ln);
+	else
+	{
+		fprintf(stderr, "L%d: unknown instruction %s\n", ln, tok1);
+		exit(EXIT_FAILURE);
+	}
 }
 
 /**
