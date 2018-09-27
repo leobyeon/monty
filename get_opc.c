@@ -11,9 +11,7 @@
 void get_opc(char *tok1, unsigned int ln, stack_t **stack)
 {
 	if (strcmp(tok1, "push") == 0)
-	{
 		push(stack, ln);
-	}
 	else if (strcmp(tok1, "pall") == 0)
 		pall(stack, ln);
 	else if (strcmp(tok1, "pint") == 0)
@@ -28,7 +26,10 @@ void get_opc(char *tok1, unsigned int ln, stack_t **stack)
 		nop(stack, ln);
 	else
 	{
+		free_list(*stack);
+		fclose(glo_val.fs);
 		fprintf(stderr, "L%d: unknown instruction %s\n", ln, tok1);
+		free(glo_val.buffer);
 		exit(EXIT_FAILURE);
 	}
 }

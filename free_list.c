@@ -7,7 +7,7 @@
  */
 void free_list(stack_t *head)
 {
-	stack_t *tmp;
+	stack_t *tmp = head;
 
 	while (tmp)
 	{

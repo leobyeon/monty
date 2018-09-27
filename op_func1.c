@@ -32,13 +32,16 @@ void push(stack_t **stack, unsigned int ln)
 	new = malloc(sizeof(stack_t));
 	if (!new)
 	{
+		free_list(*stack);
+		fclose(glo_val.fs);
 		fprintf(stderr, "Malloc failure\n");
+		free(glo_val.buffer);
 		exit(EXIT_FAILURE);
 	}
 
-	if (checknum(glo_val))
+	if (checknum(glo_val.val))
 	{
-		new->n = atoi(glo_val);
+		new->n = atoi(glo_val.val);
 		new->next = *stack;
 		new->prev = NULL;
 		*stack = new;
@@ -47,8 +50,11 @@ void push(stack_t **stack, unsigned int ln)
 	}
 	else
 	{
+		free_list(*stack);
+		fclose(glo_val.fs);
 		fprintf(stderr, "L%d: usage: push integer\n", ln);
 		free(new);
+		free(glo_val.buffer);
 		exit(EXIT_FAILURE);
 	}
 }
@@ -64,6 +70,9 @@ void pint(stack_t **stack, unsigned int ln)
 	if (!*stack)
 	{
 		fprintf(stderr, "L%d: can't pint, stack empty\n", ln);
+		free_list(*stack);
+		fclose(glo_val.fs);
+		free(glo_val.buffer);
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
@@ -82,6 +91,9 @@ void pop(stack_t **stack, unsigned int ln)
 	if (!*stack)
 	{
 		fprintf(stderr, "L%d: can't pop an empty stack\n", ln);
+		free_list(*stack);
+		fclose(glo_val.fs);
+		free(glo_val.buffer);
 		exit(EXIT_FAILURE);
 	}
 	traverse = (*stack)->next;

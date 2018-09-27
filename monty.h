@@ -10,6 +10,16 @@
 
 #define DELIMS " \t\r\n"
 
+typedef struct gv_s
+{
+	char *buffer;
+	char *opc;
+	char *val;
+	FILE *fs;
+} gv_t;
+
+extern gv_t glo_val;
+
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -39,8 +49,6 @@ typedef struct instruction_s
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
-
-extern char *glo_val;
 
 void get_opc(char *tok1, unsigned int ln, stack_t **stack);
 int checknum(char *tok2);
